@@ -2,10 +2,12 @@ package RelaxBlocks.model
 
 import kotlin.random.Random
 
+// Game class, contains game matrix in which all Cells are located
+// Essential to core of the Game
 class Game(val height: Int, val width: Int) {
     var game = arrayListOf<ArrayList<Cell>>()
-
     //    game is an arraylist of an ArrayList of Cell
+
     init {
         if (height < 0 || width < 0) {
             throw IllegalArgumentException("ERROR. Game height or width invalid")
