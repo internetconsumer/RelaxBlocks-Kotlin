@@ -23,10 +23,25 @@ class Game(val height: Int, val width: Int) {
         }
     }
 
+    fun setCell(y: Int, x: Int, cellValue: Int) {
+        if (y < 0 || y > height) {
+            throw IndexOutOfBoundsException("y coordinate is out of index range")
+        }
+        if (x < 0 || x > width) {
+            throw IndexOutOfBoundsException("x coordinate is out of index range")
+        }
+        if (cellValue < 0 || cellValue > 3) {
+            throw IllegalArgumentException("ERROR. CellValue Illegal")
+        }
+        game[y][x].cellValue = cellValue
+        game[y][x].setCellType(cellValue)
+        val formatterSetCell = "Cell x%d y%d value set to %s\n"
+        print(formatterSetCell.format(x, y, game[y][x].cellType))
+    }
+
 }
 
-// Cells used for Game, contain X and Y coordinate, given in constructor
-// Given random value between 0 and 2 at start
+
 class Cell(val y: Int, val x: Int) {
     var cellValue = Random.nextInt(3)
     var cellType: Char? = null
@@ -52,10 +67,10 @@ class Cell(val y: Int, val x: Int) {
     }
 }
 
-// Player class, contains name, current score and final/highScore
 class Player(val name: String) {
     var score = 0
     var highScore = 0
+
 }
 
 class Input(var x: Int, var y: Int) {}

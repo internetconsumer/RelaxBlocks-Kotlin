@@ -4,6 +4,12 @@ fun main() {
     val game = Game(15, 15)
     displayer(game)
 
+    game.setCell(4, 4, 3)
+    game.setCell(4, 2, 3)
+    game.setCell(4, 5, 3)
+    displayer(game)
+
+
 }
 
 // Displayer for console view of Game
