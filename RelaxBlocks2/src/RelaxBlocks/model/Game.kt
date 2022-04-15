@@ -3,12 +3,37 @@ package RelaxBlocks.model
 import kotlin.random.Random
 
 class Game(val height: Int, val width: Int) {
+    var game = arrayListOf<ArrayList<Cell>>()
 
-
+    //    game is an arraylist of an ArrayList of Cell
     init {
         if (height < 0 || width < 0) {
             throw IllegalArgumentException("ERROR. Game height or width invalid")
         }
+        // Fill game per row with listrow, which is ArrayList of Cell
+        for (i in 0 until height) {
+            val listRow = ArrayList<Cell>()
+            for (j in 0 until width) {
+                listRow.add(Cell(i, j))
+            }
+            game.add(listRow)
+        }
+    }
+
+    fun setCell(y: Int, x: Int, cellValue: Int) {
+        if (y < 0 || y > height) {
+            throw IndexOutOfBoundsException("y coordinate is out of index range")
+        }
+        if (x < 0 || x > width) {
+            throw IndexOutOfBoundsException("x coordinate is out of index range")
+        }
+        if (cellValue < 0 || cellValue > 3) {
+            throw IllegalArgumentException("ERROR. CellValue Illegal")
+        }
+        game[y][x].cellValue = cellValue
+        game[y][x].setCellType(cellValue)
+        val formatterSetCell = "Cell x%d y%d value set to %s\n"
+        print(formatterSetCell.format(x, y, game[y][x].cellType))
     }
 
 }
@@ -44,3 +69,5 @@ class Player(val name: String) {
     var highScore = 0
 
 }
+
+class Input(var x: Int, var y: Int) {}

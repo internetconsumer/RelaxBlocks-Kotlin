@@ -1,19 +1,31 @@
 package RelaxBlocks.model
 
 fun main() {
-    val player = Player("player1")
-    val testTemplate = "%s currently has %d points."
-    println(testTemplate.format(player.name, player.score))
-    val templateTwo = "Cell %-10d X coordinate: %-8dY coordinate: %d\nCellType: %s"
-    var testingTime = arrayListOf<Cell>()
-    for (i in 0 until 10) {
-        testingTime.add(i, Cell(0, i))
-    }
+    val game = Game(15, 15)
+    displayer(game)
 
-    for (i in 0 until 10) {
-        println(templateTwo.format(i,testingTime[i].x, testingTime[i].y, testingTime[i].cellType))
+    game.setCell(4, 4, 3)
+    game.setCell(4, 2, 3)
+    game.setCell(4, 5, 3)
+    displayer(game)
+
+
+}
+
+// Displayer for console view of Game
+fun displayer(game: Game) {
+    val formatter0 = "%5s"
+    print(formatter0.format(""))
+    for (i in 0 until game.width) {
+        print(formatter0.format(i))
     }
-    val cell = Cell(5, 5)  // Cell test, illegal CellValue
-    val templateThree = "X coordinate: %-8dY coordinate: %d\nCellType: %s"
-    println(templateThree.format(cell.x, cell.y, cell.cellType))
+    println()
+    var teller = 0
+    for (inner in game.game) {
+        print(formatter0.format(teller++))
+        for (inside in inner) {
+            print(formatter0.format(inside.cellType))
+        }
+        println()
+    }
 }
