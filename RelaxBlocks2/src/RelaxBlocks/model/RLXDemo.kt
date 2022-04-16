@@ -9,7 +9,6 @@ fun main() {
     game.setCell(4, 5, 3)
     displayer(game)
 
-
 }
 
 // Displayer for console view of Game
